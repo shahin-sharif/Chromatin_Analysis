@@ -103,3 +103,13 @@ This is a revised interface, not a drop-in replacement for legacy command lines 
 ## Validation
 
 Twenty regression tests cover independently known overlap counts, a randomized complete-bin oracle, gaps and partial bins, mask subtraction, empty includes, annotation base conservation, GTF strand conversion, zero support, rectangular matrices, explicit mapping, label-aligned reports, escaping, and overwrite protection. A plotting smoke check also exercises embedded report images. No representative real ChromHMM segmentation pair has been tested yet.
+
+## Continue with post-segmentation analysis
+
+[ChromatinStateAnalysis.py](ChromatinStateAnalysis.md) consumes this tool's
+RUNINFO.json and overlap.bp.tsv, the original hashed inputs, and model emissions.
+It verifies the comparison and reconstructs all coordinate-level overlap pairs,
+including unchanged regions, before adding explicit gene/transcript windows,
+expression integration, selected transitions and optional gene-set enrichment.
+Retain the original segmentation/mask/mapping inputs for that verification.
+The new tool does not change this tool's coordinate conventions or CLI.
